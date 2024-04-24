@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 // const { Link } = ReactRouterDOM
 export function CampaignPreview({ campaign, onRemoveCampaign, onEditCampaign }) {
 
-    const fallbackImg = "https://res.cloudinary.com/drlt4yjnj/image/upload/v1704134518/on_error_nhlmpp.png"
+    const fallbackImg = "https://res.cloudinary.com/drlt4yjnj/image/upload/v1713959046/campaignManager/oenjkvmkqcksnasx2f5o.png"
     return (
         <li className="campaign-preview" key={campaign._id}>
 
@@ -22,8 +22,6 @@ export function CampaignPreview({ campaign, onRemoveCampaign, onEditCampaign }) 
                     }}
                 />
             </div>
-
-            <span className="campaign-price">Price: <span>${campaign.price.toLocaleString()}</span></span>
 
             <div className="actions-btns-container">
                 <button> <Link className='details-btn' to={`/campaign/details/${campaign._id}`}>Details</Link></button>

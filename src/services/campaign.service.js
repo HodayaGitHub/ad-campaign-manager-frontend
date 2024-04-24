@@ -7,12 +7,6 @@ const axios = Axios.create({
     withCredentials: true
 })
 
-
-
-const labels = ['On wheels', 'Box game', 'Art', 'Baby', 'Doll', 'Puzzle',
-    'Outdoor', 'Battery Powered']
-
-
 export const campaignService = {
     query,
     getById,
@@ -25,7 +19,6 @@ const BASE_URL = 'campaign'
 function query() {
     return httpService.get(BASE_URL, {})
 }
-
 
 function getById(campaignId) {
     return httpService.get(`${BASE_URL}/${campaignId}`)

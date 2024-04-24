@@ -11,6 +11,7 @@ export async function loadCampaigns() {
 
     try {
         try {
+            const campaigns = await campaignService.query()
             store.dispatch({ type: SET_CAMPAIGNS, campaigns })
         } catch (err) {
             console.log('campaign action -> Cannot load campaigns', err)
