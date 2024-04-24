@@ -23,7 +23,8 @@ const AdvertisingPlatform = {
 export function CampaignForm({ formMode }) {
     const [campaignToEdit, setCampaignToEdit] = useState(campaignService.getEmptyCampaign());
     const [selectedPlatform, setSelectedPlatform] = useState('');
-
+    const [isUploading, setIsUploading] = useState(false);
+    const [fileName, setFileName] = useState('');
     const [mode, setMode] = useState(formMode);
 
     const navigate = useNavigate();
@@ -53,12 +54,18 @@ export function CampaignForm({ formMode }) {
     };
 
     async function handleChange(ev) {
-        const { name, value, type } = ev.target;
+        const { name, value, type, files } = ev.target;
         let newValue;
 
         if (type === 'file') {
             const uploadedImageUrl = await uploadImg(ev);
             newValue = uploadedImageUrl;
+            // Set the file name when a file is selected
+            if (files.length > 0) {
+                setFileName(files[0].name);
+            } else {
+                setFileName('');
+            }
         } else {
             newValue = value;
             console.log('newValue', newValue)
@@ -78,16 +85,16 @@ export function CampaignForm({ formMode }) {
         try {
             await saveCampaign(campaignToEdit);
             showSuccessMsgRedux('Campaign saved successfully');
-            navigate('/campaign');
+            navigate('/');
         } catch (err) {
             showErrorMsgRedux(`Error while trying to save campaign, ${err}`);
         }
     }
 
     async function uploadImg(ev) {
-        // setIsUploading(true)
+        setIsUploading(true)
         const { secure_url } = await uploadService.uploadImg(ev)
-        // setIsUploading(false)
+        setIsUploading(false)
         console.log('secure_url', secure_url);
         return secure_url
     }
@@ -128,15 +135,23 @@ export function CampaignForm({ formMode }) {
                         value={campaignToEdit.advertiserLandingPage || ''}
                     />
 
-                    <Field className="formik-field-edit"
-                        id="bannerImageURL"
-                        name="bannerImageURL"
-                        label="Upload Banner Image"
-                        type="file"
-                        onChange={(event) => {
-                            handleChange(event);
-                        }}
-                    />
+                    <div className="formik-field-edit">
+                        <label htmlFor="bannerImageURL">Upload Banner Image</label>
+                        <input
+                            id="bannerImageURL"
+                            name="bannerImageURL"
+                            type="file"
+                            style={{ display: 'none' }}
+                            onChange={(event) => handleChange(event)}
+                        />
+                        <Button
+                            variant="outlined"
+                            component="label"
+                            htmlFor="bannerImageURL"
+                        >
+                            {fileName ? fileName : "Choose File"}
+                        </Button>
+                    </div>
 
                     <Field
                         className="formik-field-edit"
@@ -155,7 +170,7 @@ export function CampaignForm({ formMode }) {
                         ))}
                     </Field>
 
-                    <Button type="submit" variant="contained">save</Button>
+                    <Button type="submit" variant="contained" disabled={isUploading}>save</Button>
                 </Form>
             </Formik>
         </section>

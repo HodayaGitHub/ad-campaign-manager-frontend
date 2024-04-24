@@ -25,7 +25,7 @@ export function CampaignDetails() {
             setCampaign(campaign)
         } catch (err) {
             // showErrorMsg('Cant load campaign')
-            navigate('/campaign')
+            navigate('/')
         }
     }
 
