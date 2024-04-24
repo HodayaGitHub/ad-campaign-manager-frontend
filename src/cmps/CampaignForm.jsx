@@ -1,16 +1,16 @@
 
-import { useNavigate, useParams } from "react-router-dom"
-import { useEffect, useRef, useState } from "react"
-import { campaignService } from "../services/campaign.service"
-import { saveCampaign } from "../../src/store/actions/campaign.actions"
-import { showErrorMsgRedux, showSuccessMsgRedux } from "../store/actions/app.actions"
-import { uploadService } from "../services/upload.service"
+import { useNavigate, useParams } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
+import { campaignService } from '../services/campaign.service';
+import { saveCampaign } from '../../src/store/actions/campaign.actions';
+import { showErrorMsgRedux, showSuccessMsgRedux } from '../store/actions/app.actions';
+import { uploadService } from '../services/upload.service';
 
-import { Formik, Form, Field } from "formik"
-import { Button, TextField } from "@mui/material"
+import { Formik, Form, Field } from 'formik';
+import { Button, TextField } from '@mui/material';
 
 function CustomInput(props) {
-    return <TextField {...props} variant="outlined" />
+    return <TextField {...props} variant='outlined' />
 }
 
 // Used an object instead of an enum here since the project is not utilized with TypeScript:
@@ -20,16 +20,20 @@ const AdvertisingPlatform = {
     TIKTOK: 'TikTok',
 };
 
-export function CampaignEdit() {
+export function CampaignForm({ formMode }) {
     const [campaignToEdit, setCampaignToEdit] = useState(campaignService.getEmptyCampaign());
     const [selectedPlatform, setSelectedPlatform] = useState('');
+
+    const [mode, setMode] = useState(formMode);
 
     const navigate = useNavigate();
     const params = useParams();
 
     useEffect(() => {
-        if (params.campaignId) {
+        if (mode === 'edit') {
             loadCampaign();
+        } else {
+            setMode('add');
         }
     }, [params.campaignId]);
 
@@ -44,8 +48,8 @@ export function CampaignEdit() {
 
     const handlePlatformChange = (event) => {
         const { value } = event.target;
-        setSelectedPlatform(value); 
-        handleChange(event); 
+        setSelectedPlatform(value);
+        handleChange(event);
     };
 
     async function handleChange(ev) {
@@ -70,19 +74,23 @@ export function CampaignEdit() {
         }
     }
 
-
-    function onSaveCampaign() {
-        // ev.preventDefault()
-        saveCampaign(campaignToEdit)
-            .then(() => {
-                showSuccessMsgRedux('Campaign saved successfully')
-                navigate('/campaign')
-            })
-            .catch((err) => {
-                showErrorMsgRedux(`Error while trying to save campaign, err`)
-            })
+    async function onSaveCampaign() {
+        try {
+            await saveCampaign(campaignToEdit);
+            showSuccessMsgRedux('Campaign saved successfully');
+            navigate('/campaign');
+        } catch (err) {
+            showErrorMsgRedux(`Error while trying to save campaign, ${err}`);
+        }
     }
 
+    async function uploadImg(ev) {
+        // setIsUploading(true)
+        const { secure_url } = await uploadService.uploadImg(ev)
+        // setIsUploading(false)
+        console.log('secure_url', secure_url);
+        return secure_url
+    }
 
 
 
@@ -142,9 +150,9 @@ export function CampaignEdit() {
                         value={selectedPlatform}
 
                     >
-                        {Object.keys(AdvertisingPlatform).map((platform) => (
-                            <option key={platform} value={platform}>
-                                {AdvertisingPlatform[platform]}
+                        {Object.entries(AdvertisingPlatform).map(([key, value]) => (
+                            <option key={key} value={value}>
+                                {value}
                             </option>
                         ))}
                     </Field>

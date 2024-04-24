@@ -16,7 +16,7 @@ export function CampaignPreview({ campaign, onRemoveCampaign, onEditCampaign, on
 
             <div className="actions-btns-container">
                 <button onClick={() => { onCampaignDetails(campaign._id) }}>
-                    Edit
+                    Details
                 </button>
 
                 <button onClick={() => { onRemoveCampaign(campaign._id) }}>

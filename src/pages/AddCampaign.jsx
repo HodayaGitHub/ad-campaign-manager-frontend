@@ -5,6 +5,6 @@ export function AddCampaign() {
 
 
     return (
-        <CampaignForm />
+        <CampaignForm formMode='add'/>
     )
 }

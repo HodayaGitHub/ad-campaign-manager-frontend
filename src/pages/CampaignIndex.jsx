@@ -14,27 +14,20 @@ export function CampaignIndex() {
     const isLoading = useSelector(storeState => storeState.campaignModule.isLoading);
 
     const navigate = useNavigate();
-
+    
     useEffect(() => {
-        loadCampaigns()
-            .catch(() => {
+        async function fetchData() {
+            try {
+                await loadCampaigns();
+            } catch (error) {
                 showErrorMsgRedux('Cannot show campaigns');
-            });
+            }
+        }
+
+        fetchData();
+
     }, []);
 
-
-
-    async function onAddCampaign() {
-        try {
-            const campaignToSave = campaignService.getEmptyCampaign()
-            const savedCampaign = await saveCampaign(campaignToSave)
-            console.log('savedCampaign:', savedCampaign)
-            showSuccessMsgRedux(`Campaign added (name: ${savedCampaign.name})`)
-        } catch (error) {
-            console.error('Cannot add campaign', error)
-            showErrorMsgRedux('Cannot add campaign')
-        }
-    }
 
     async function onRemoveCampaign(campaignId) {
         try {
