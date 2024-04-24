@@ -22,6 +22,7 @@ export function App() {
                             <Route element={<CampaignIndex />} path="/campaign" />
                             <Route element={<AboutUs />} path="/about" />
                             <Route element={<CampaignEdit />} path="/campaign/:campaignId" />
+                            <Route element={<CampaignEdit />} path="/new-campaign" />
                             <Route element={<CampaignDetails />} path="/campaign/details/:campaignId" />
                         </Routes>
                     </main>
