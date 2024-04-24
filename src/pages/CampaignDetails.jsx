@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { campaignService } from '../services/campaign.service.js'
-// import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
+import { CampaignImage } from '../cmps/CampaignImage.jsx'
 
 function getEmptyMsg() {
     return {
@@ -52,8 +52,11 @@ export function CampaignDetails() {
     return (
         <section className="campaign-details">
             <h1>{campaign.name}</h1>
-            <h5>Price: ${campaign.price}</h5>
-            <img src={campaign.src} alt="" />
+            <h4>advertising Platform: {campaign.advertisingPlatform}</h4>
+            <h4>advertiser Landing Page: {campaign.advertiserLandingPage}</h4>
+
+            <CampaignImage campaign={campaign}/>
+
             <ul>
                 {campaign.msgs &&
                     campaign.msgs.map((msg) => (
@@ -67,7 +70,7 @@ export function CampaignDetails() {
                         </li>
                     ))}
             </ul>
-            
+
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi voluptas
                 cumque tempore, aperiam sed dolorum rem!

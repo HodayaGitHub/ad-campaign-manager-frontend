@@ -56,7 +56,6 @@ export async function loadLabels() {
     }
 }
 
-
 export async function removeCampaign(campaignId) {
     store.dispatch({ type: REMOVE_CAMPAIGN, campaignId })
     store.dispatch({ type: SET_IS_LOADING, isLoading: true })
@@ -73,7 +72,6 @@ export async function removeCampaign(campaignId) {
         store.dispatch({ type: SET_IS_LOADING, isLoading: false })
     }
 }
-
 
 export async function saveCampaign(campaign) {
     const type = campaign._id ? UPDATE_CAMPAIGN : ADD_CAMPAIGN
