@@ -13,44 +13,61 @@ function CustomInput(props) {
     return <TextField {...props} variant="outlined" />
 }
 
+// Used an object instead of an enum here since the project is not utilized with TypeScript:
+const AdvertisingPlatform = {
+    GOOGLE: 'Google',
+    TABOOLA: 'Taboola',
+    TIKTOK: 'TikTok',
+};
 
 export function CampaignEdit() {
-    const [campaignToEdit, setCampaignToEdit] = useState(campaignService.getEmptyCampaign())
+    const [campaignToEdit, setCampaignToEdit] = useState(campaignService.getEmptyCampaign());
+    const [selectedPlatform, setSelectedPlatform] = useState('');
 
-    const navigate = useNavigate()
-    const params = useParams()
+    const navigate = useNavigate();
+    const params = useParams();
 
     useEffect(() => {
         if (params.campaignId) {
-            loadCampaign()
+            loadCampaign();
         }
-    }, [params.campaignId])
+    }, [params.campaignId]);
 
     function loadCampaign() {
         campaignService.getById(params.campaignId)
             .then((campaign) => {
-                setCampaignToEdit(campaign)
+                setCampaignToEdit(campaign);
             })
-            .catch(err => console.log('err:', err))
+            .catch(err => console.log('err:', err));
     }
+
+
+    const handlePlatformChange = (event) => {
+        const { value } = event.target;
+        setSelectedPlatform(value); 
+        handleChange(event); 
+    };
 
     async function handleChange(ev) {
         const { name, value, type } = ev.target;
         let newValue;
-    
-        if (type === 'number') {
-            newValue = parseFloat(value);
-        } else if (type === 'file') {
+
+        if (type === 'file') {
             const uploadedImageUrl = await uploadImg(ev);
             newValue = uploadedImageUrl;
         } else {
             newValue = value;
+            console.log('newValue', newValue)
         }
-    
+
         setCampaignToEdit((prevCampaign) => ({
             ...prevCampaign,
             [name]: newValue,
         }));
+
+        if (name === 'advertisingPlatform') {
+            ev.target.value = newValue;
+        }
     }
 
 
@@ -90,6 +107,7 @@ export function CampaignEdit() {
                 onSubmit={onSaveCampaign}
             >
 
+
                 <Form className="formik">
                     <Field className="formik-field-edit"
                         id="name"
@@ -121,21 +139,22 @@ export function CampaignEdit() {
                         }}
                     />
 
-
-                    <Field className="formik-field-edit"
+                    <Field
+                        className="formik-field-edit"
                         id="advertisingPlatform"
                         as="select"
                         name="advertisingPlatform"
-                        label="Advertising Platform"
-                        onChange={handleChange}
-                        value={campaignToEdit.advertisingPlatform || ''}
-                    >
-                        <option value="">Select Advertising Platform</option>
-                        <option value="Google">Google</option>
-                        <option value="Taboola">Taboola</option>
-                        <option value="TikTok">TikTok</option>
-                    </Field>
+                        label="Select Advertising Platform"
+                        onChange={handlePlatformChange}
+                        value={selectedPlatform}
 
+                    >
+                        {Object.keys(AdvertisingPlatform).map((platform) => (
+                            <option key={platform} value={platform}>
+                                {AdvertisingPlatform[platform]}
+                            </option>
+                        ))}
+                    </Field>
 
                     <Button type="submit" variant="contained">save</Button>
                 </Form>
