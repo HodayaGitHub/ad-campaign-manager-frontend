@@ -1,11 +1,5 @@
-import Axios from 'axios'
-import { utilService } from './util.service.js'
 import { httpService } from './http.service.js'
 
-// for cookies
-const axios = Axios.create({
-    withCredentials: true
-})
 
 export const campaignService = {
     query,
