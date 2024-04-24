@@ -1,0 +1,22 @@
+.app-header {
+    background-color: $clr1;
+    color: $clr1bg;
+    padding: 1em;
+    
+    .app-nav {
+        display: flex;
+        gap: 15px;
+    }
+
+    .header-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+@media(max-width: 720px) {
+    .app-header {
+        color: $clr2bg;
+    }
+}

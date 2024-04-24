@@ -6,8 +6,8 @@ html {}
 
 body {
   margin: 0;
-  /* color: var(--gray3); */
-  /* color: white; */
+  // color: var(--gray3);
+  // color: white;
   background: #444;
   color: rgb(153, 166, 149);
   font-family: 'Edu VIC WA NT Beginner', cursive;
@@ -33,22 +33,23 @@ a {
   cursor: pointer;
 }
 
-
-
-/* Dont stretch my Media */
+// Don't stretch my Media
 img,
 embed,
 video,
 object {
-  max-width: 100%
+  max-width: 100%;
 }
 
-/* Simple and useful CSS Debugging Technique */
+// Simple and useful CSS Debugging Technique
 .debug * {
-  outline: 1px solid gold
+  outline: 1px solid gold;
 }
 
-
-.about nav a {
-  margin-right: 10px;
+.about {
+  nav {
+    a {
+      margin-right: 10px;
+    }
+  }
 }

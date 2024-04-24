@@ -1,0 +1,60 @@
+.campaign-list {
+    padding: 15px 0 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-rows: repeat(auto-fill, minmax(0, 1fr));
+    gap: 15px;
+
+    .img-container {
+        width: 80%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .campaign-img {
+        max-width: 100%;
+        max-height: 200px;
+        width: auto;
+        height: auto;
+        overflow: hidden;
+        object-fit: contain;
+        align-self: center;
+        justify-content: center;
+
+        &:hover {
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+        }
+    }
+
+    .campaign-preview {
+        text-align: center;
+        padding: 0.3em;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: $clr1bg;
+        margin: 0.5em;
+        gap: 10px;
+        border-radius: 10px;
+        color: black;
+
+        h4 {
+            text-transform: capitalize;
+            color: black;
+        }
+
+    }
+
+    .map-button {
+        z-index: 10;
+    }
+
+    .leaflet-container {
+        z-index: 2;
+    }
+}

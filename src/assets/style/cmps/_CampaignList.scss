@@ -2,9 +2,7 @@
     padding: 15px 0 0;
     list-style: none;
     display: grid;
-    /* grid-template-columns: repeat(7, 1fr); */
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* Set the max height to 200 pixels */
-
     grid-template-rows: repeat(auto-fill, minmax(0, 1fr)); /* Set the max height to 200 pixels */
     gap: 15px;
 }

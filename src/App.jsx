@@ -1,16 +1,13 @@
-import { Route, Routes, BrowserRouter as Router } from 'react-router-dom'
-import { Provider } from 'react-redux'
-import './assets/style/main.css'
-
-import { AppHeader } from './cmps/AppHeader.jsx'
-import { AppFooter } from './cmps/AppFooter.jsx'
-import { CampaignDetails } from './pages/CampaignDetails.jsx'
-
-
+import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import './assets/style/main.scss';
+import { AppHeader } from './cmps/AppHeader';
+import { AppFooter } from './cmps/AppFooter';
+import { CampaignDetails } from './pages/CampaignDetails';
+import { CampaignEdit } from './pages/CampaignEdit';
+import { CampaignIndex } from './pages/CampaignIndex';
+import { AboutUs } from './pages/AboutUs';
 import { store } from './store/store.js'
-import { CampaignIndex } from './pages/CampaignIndex.jsx'
-import { CampaignEdit } from './pages/CampaignEdit.jsx'
-import { AboutUs } from './pages/AboutUs.jsx'
 
 
 export function App() {
