@@ -7,7 +7,6 @@ import { CampaignDetails } from './pages/CampaignDetails';
 import { CampaignEdit } from './pages/CampaignEdit';
 import { CampaignIndex } from './pages/CampaignIndex';
 import {AddCampaign} from './pages/AddCampaign';
-import { AboutUs } from './pages/AboutUs';
 import { store } from './store/store';
 
 
@@ -20,8 +19,7 @@ export function App() {
                     <AppHeader />
                     <main>
                         <Routes>
-                            <Route element={<CampaignIndex />} path="/campaign" />
-                            <Route element={<AboutUs />} path="/about" />
+                            <Route element={<CampaignIndex />} path="/" />
                             <Route element={<CampaignEdit />} path="/campaign/:campaignId" />
                             <Route element={<AddCampaign />} path="/new-campaign" />
                             <Route element={<CampaignDetails />} path="/campaign/details/:campaignId" />

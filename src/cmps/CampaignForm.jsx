@@ -92,8 +92,6 @@ export function CampaignForm({ formMode }) {
         return secure_url
     }
 
-
-
     return (
         <section className="campaign-edit">
             <h1>Edit Campaign</h1>
