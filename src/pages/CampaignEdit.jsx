@@ -26,7 +26,6 @@ export function CampaignEdit() {
         }
     }, [params.campaignId])
 
-
     function loadCampaign() {
         campaignService.getById(params.campaignId)
             .then((campaign) => {
@@ -34,6 +33,7 @@ export function CampaignEdit() {
             })
             .catch(err => console.log('err:', err))
     }
+
     function handleChange(ev) {
         const { name, value, type, selectedOptions } = ev.target;
         const newValue =
@@ -48,7 +48,6 @@ export function CampaignEdit() {
             [name]: newValue,
         }))
     }
-
 
     function onSaveCampaign() {
         // ev.preventDefault()
@@ -70,8 +69,10 @@ export function CampaignEdit() {
 
             <Formik
                 initialValues={{
-                    txt: '',
-                    maxPrice: '',
+                    name: '',
+                    advertisingPlatform: '',
+                    advertiserLandingPage: '',
+                    bannerImageURL: '',
                 }}
                 onSubmit={onSaveCampaign}
             >
@@ -87,15 +88,42 @@ export function CampaignEdit() {
                         value={campaignToEdit.name || ''}
                     />
 
-                    <Field className="formik-field"
-                        id="price"
+                    <Field className="formik-field-edit"
+                        id="advertiserLandingPage"
                         as={CustomInput}
-                        name="price"
-                        label="Max Price"
-                        type="number"
+                        name="advertiserLandingPage"
+                        label="Advertiser Landing Page"
+                        type="text"
                         onChange={handleChange}
-                        value={campaignToEdit.price || ''}
+                        value={campaignToEdit.advertiserLandingPage || ''}
                     />
+
+                    <Field className="formik-field-edit"
+                        id="bannerImage"
+                        name="bannerImage"
+                        label="Upload Banner Image"
+                        type="file"
+                        onChange={(event) => {
+                            handleChange(event); 
+                        }}
+                    />
+
+
+                    <Field className="formik-field-edit"
+                        id="advertisingPlatform"
+                        as="select"
+                        name="advertisingPlatform"
+                        label="Advertising Platform"
+                        onChange={handleChange}
+                        value={campaignToEdit.advertisingPlatform || ''}
+                    >
+                        <option value="">Select Advertising Platform</option>
+                        <option value="Google">Google</option>
+                        <option value="Taboola">Taboola</option>
+                        <option value="TikTok">TikTok</option>
+                    </Field>
+
+
                     <Button type="submit" variant="contained">save</Button>
                 </Form>
             </Formik>

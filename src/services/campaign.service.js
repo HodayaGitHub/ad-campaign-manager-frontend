@@ -12,6 +12,7 @@ export const campaignService = {
     getById,
     save,
     remove,
+    getEmptyCampaign,
 }
 
 const BASE_URL = 'campaign'
@@ -32,3 +33,11 @@ function save(campaign) {
     return httpService.put(BASE_URL, campaign)
 }
 
+function getEmptyCampaign() {
+    return {
+        name: '',
+        advertisingPlatform: '',
+        advertiserLandingPage: '',
+        bannerImageURL: '',
+    }
+}
