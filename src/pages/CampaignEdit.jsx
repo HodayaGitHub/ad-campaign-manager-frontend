@@ -1,13 +1,13 @@
 
 import { useNavigate, useParams } from "react-router-dom"
 import { useEffect, useRef, useState } from "react"
-import { campaignService } from '../services/campaign.service'
-import { saveCampaign } from '../../src/store/actions/campaign.actions'
+import { campaignService } from "../services/campaign.service"
+import { saveCampaign } from "../../src/store/actions/campaign.actions"
 import { showErrorMsgRedux, showSuccessMsgRedux } from "../store/actions/app.actions"
+import { uploadService } from "../services/upload.service"
 
-import { Formik, Form, Field } from 'formik'
-import { Button, TextField } from '@mui/material'
-import * as Yup from 'yup'
+import { Formik, Form, Field } from "formik"
+import { Button, TextField } from "@mui/material"
 
 function CustomInput(props) {
     return <TextField {...props} variant="outlined" />
@@ -34,20 +34,25 @@ export function CampaignEdit() {
             .catch(err => console.log('err:', err))
     }
 
-    function handleChange(ev) {
-        const { name, value, type, selectedOptions } = ev.target;
-        const newValue =
-            type === 'number'
-                ? parseFloat(value)
-                : type === 'select-multiple'
-                    ? Array.from(selectedOptions, (option) => option.value)
-                    : value;
-
+    async function handleChange(ev) {
+        const { name, value, type } = ev.target;
+        let newValue;
+    
+        if (type === 'number') {
+            newValue = parseFloat(value);
+        } else if (type === 'file') {
+            const uploadedImageUrl = await uploadImg(ev);
+            newValue = uploadedImageUrl;
+        } else {
+            newValue = value;
+        }
+    
         setCampaignToEdit((prevCampaign) => ({
             ...prevCampaign,
             [name]: newValue,
-        }))
+        }));
     }
+
 
     function onSaveCampaign() {
         // ev.preventDefault()
@@ -61,6 +66,14 @@ export function CampaignEdit() {
             })
     }
 
+
+    async function uploadImg(ev) {
+        // setIsUploading(true)
+        const { secure_url } = await uploadService.uploadImg(ev)
+        // setIsUploading(false)
+        console.log('secure_url', secure_url);
+        return secure_url
+    }
 
 
     return (
@@ -99,12 +112,12 @@ export function CampaignEdit() {
                     />
 
                     <Field className="formik-field-edit"
-                        id="bannerImage"
-                        name="bannerImage"
+                        id="bannerImageURL"
+                        name="bannerImageURL"
                         label="Upload Banner Image"
                         type="file"
                         onChange={(event) => {
-                            handleChange(event); 
+                            handleChange(event);
                         }}
                     />
 
