@@ -1,6 +1,6 @@
 import { CampaignPreview } from "./CampaignPreview.jsx"
 
-export function CampaignList({ campaigns, onRemoveCampaign, onEditCampaign, addToCampaign }) {
+export function CampaignList({ campaigns, onRemoveCampaign, onEditCampaign, addToCampaign, onCampaignDetails}) {
 
     return (
         <ul className="campaign-list">
@@ -9,6 +9,7 @@ export function CampaignList({ campaigns, onRemoveCampaign, onEditCampaign, addT
                     key={campaign._id}
                     campaign={campaign}
                     onRemoveCampaign={onRemoveCampaign}
+                    onCampaignDetails={onCampaignDetails}
                     onEditCampaign={onEditCampaign}
                     addToCampaign={addToCampaign}
                 />

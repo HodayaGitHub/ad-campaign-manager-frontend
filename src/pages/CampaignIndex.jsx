@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import React, { useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import { loadCampaigns, removeCampaign, saveCampaign } from '../store/actions/campaign.actions.js'
 
 import { campaignService } from '../services/campaign.service'
@@ -24,16 +24,6 @@ export function CampaignIndex() {
     }, [])
 
 
-    async function onRemoveCampaign(campaignId) {
-        try {
-            await removeCampaign(campaignId)
-            showSuccessMsgRedux(`Removed item with ${campaignId} id successfully`)
-        } catch (error) {
-            console.error('Cannot remove campaign', error)
-            showErrorMsgRedux('Cannot remove campaign')
-        }
-    }
-
 
     async function onAddCampaign() {
         try {
@@ -47,18 +37,24 @@ export function CampaignIndex() {
         }
     }
 
+    async function onRemoveCampaign(campaignId) {
+        try {
+            await removeCampaign(campaignId)
+            showSuccessMsgRedux(`Removed item with ${campaignId} id successfully`)
+        } catch (error) {
+            console.error('Cannot remove campaign', error)
+            showErrorMsgRedux('Cannot remove campaign')
+        }
+    }
+
 
     function onEditCampaign(campaign) {
         navigate(`/campaign/${campaign._id}`)
     }
 
-
-    function addToCart(campaign) {
-        console.log(`Adding ${campaign.name} to Cart`)
-        dispatch({ type: ADD_CAMPAIGN_TO_CART, campaign })
-        showSuccessMsgRedux('Added to Cart')
+    function onCampaignDetails(campaignId) {
+        navigate(`/campaign/details/${campaignId}`)
     }
-
 
     return (
         <div>
@@ -68,6 +64,7 @@ export function CampaignIndex() {
                         campaigns={campaigns}
                         onEditCampaign={onEditCampaign}
                         onRemoveCampaign={onRemoveCampaign}
+                        onCampaignDetails={onCampaignDetails}
                     />
                 }
             </main>
