@@ -1,11 +1,11 @@
 export function AppFooter() {
-    
-    
+    const currentYear = new Date().getFullYear();
+
     return (
         <footer>
             <h5>
-                footer
+            This dashboard developed by Hodaya Ovadia &copy; {currentYear}
             </h5>
         </footer>
-    )
+    );
 }
