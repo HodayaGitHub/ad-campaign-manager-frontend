@@ -1,12 +1,9 @@
 import { useSelector } from 'react-redux';
 import React, { useEffect } from 'react';
-import { loadCampaigns, removeCampaign, saveCampaign, setFilterBy } from '../store/actions/campaign.actions.js';
-
-import { campaignService } from '../services/campaign.service';
+import { loadCampaigns, removeCampaign, setFilterBy } from '../store/actions/campaign.actions.js';
 import { CampaignList } from '../cmps/CampaignList';
 import { showSuccessMsgRedux, showErrorMsgRedux } from '../store/actions/app.actions.js';
 import { useNavigate } from 'react-router-dom';
-import { CampaignSort } from '../cmps/CampaignSort';
 import { PlatformStatistics } from '../cmps/statistics/PlatformStatistics';
 import { PieStatistics } from '../cmps/statistics/PieStatistics';
 import { CampaignFilter } from '../cmps/CampaignFilter';
@@ -15,24 +12,22 @@ import { CampaignFilter } from '../cmps/CampaignFilter';
 export function CampaignIndex() {
     const campaigns = useSelector(storeState => storeState.campaignModule.campaigns);
     const isLoading = useSelector(storeState => storeState.campaignModule.isLoading);
-    const filterBy = useSelector(storeState => storeState.campaignModule.filterBy)
+    const filterBy = useSelector(storeState => storeState.campaignModule.filterBy);
 
 
     const navigate = useNavigate();
 
     useEffect(() => {
-        async function fetchData() {
-            try {
-                await loadCampaigns();
-            } catch (error) {
-                showErrorMsgRedux('Cannot show campaigns');
-            }
+        fetchCampaigns();
+    }, [filterBy]);
+
+    async function fetchCampaigns() {
+        try {
+            await loadCampaigns(filterBy);
+        } catch (error) {
+            showErrorMsgRedux('Cannot show campaigns');
         }
-
-        fetchData();
-
-    }, []);
-
+    }
 
     async function onRemoveCampaign(campaignId) {
         try {
@@ -53,8 +48,8 @@ export function CampaignIndex() {
     }
 
     function onSetFilter(filterBy) {
-        // console.log('filterBy:', filterBy)
-        setFilterBy(filterBy)
+        console.log('filterBy', filterBy)
+        setFilterBy(filterBy);
     }
 
 
@@ -63,7 +58,6 @@ export function CampaignIndex() {
             {!isLoading &&
                 <>
                     <CampaignFilter
-                        campaigns={campaigns}
                         filterBy={filterBy}
                         onSetFilter={onSetFilter} />
 

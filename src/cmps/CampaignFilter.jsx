@@ -10,14 +10,14 @@ function CustomInput(props) {
 }
 
 
-export function CampaignFilter({ filterBy, onSetFilter, campaigns }) {
+export function CampaignFilter({ filterBy, onSetFilter }) {
     const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
 
     onSetFilter = useRef(utilService.debounce(onSetFilter))
 
     useEffect(() => {
         onSetFilter.current(filterByToEdit)
-    }, [])
+    }, [filterByToEdit])
 
 
     function handleChange({ target }) {
