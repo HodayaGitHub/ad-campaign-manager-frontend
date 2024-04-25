@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import React, { useEffect } from 'react';
-import { loadCampaigns, removeCampaign, saveCampaign } from '../store/actions/campaign.actions.js';
+import { loadCampaigns, removeCampaign, saveCampaign, setFilterBy } from '../store/actions/campaign.actions.js';
 
 import { campaignService } from '../services/campaign.service';
 import { CampaignList } from '../cmps/CampaignList';
@@ -9,11 +9,14 @@ import { useNavigate } from 'react-router-dom';
 import { CampaignSort } from '../cmps/CampaignSort';
 import { PlatformStatistics } from '../cmps/statistics/PlatformStatistics';
 import { PieStatistics } from '../cmps/statistics/PieStatistics';
+import { CampaignFilter } from '../cmps/CampaignFilter';
 
 
 export function CampaignIndex() {
     const campaigns = useSelector(storeState => storeState.campaignModule.campaigns);
     const isLoading = useSelector(storeState => storeState.campaignModule.isLoading);
+    const filterBy = useSelector(storeState => storeState.campaignModule.filterBy)
+
 
     const navigate = useNavigate();
 
@@ -49,22 +52,36 @@ export function CampaignIndex() {
         navigate(`/campaign/details/${campaignId}`);
     }
 
+    function onSetFilter(filterBy) {
+        // console.log('filterBy:', filterBy)
+        setFilterBy(filterBy)
+    }
+
+
     return (
         <>
             {!isLoading &&
-                <section className='main-section'>
-                    <div className='data-container'>
-                        <PlatformStatistics />
-                        <PieStatistics />
-                    </div>
-
-                    <CampaignList
+                <>
+                    <CampaignFilter
                         campaigns={campaigns}
-                        onEditCampaign={onEditCampaign}
-                        onRemoveCampaign={onRemoveCampaign}
-                        onCampaignDetails={onCampaignDetails}
-                    />
-                </section>
+                        filterBy={filterBy}
+                        onSetFilter={onSetFilter} />
+
+                    <section className='main-section'>
+                        <div className='data-container'>
+                            <PlatformStatistics />
+                            <PieStatistics />
+                        </div>
+
+                        <CampaignList
+                            campaigns={campaigns}
+                            onEditCampaign={onEditCampaign}
+                            onRemoveCampaign={onRemoveCampaign}
+                            onCampaignDetails={onCampaignDetails}
+                        />
+                    </section>
+                </>
+
             }
         </>
     )
