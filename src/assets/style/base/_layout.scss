@@ -25,11 +25,20 @@
     gap: 55px;
 }
 
-.statistics-item {
-    background-color: #ffff;
-    width: max-content;
-    height: fit-content;
-    border-radius: $table-border-raduis;
+
+.data-container {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+
+    .statistics-item {
+        background-color: #ffff;
+        width: 400px;
+        justify-content: center;
+        height: fit-content;
+        border-radius: $table-border-raduis;
+    }
+
 }
 
 
