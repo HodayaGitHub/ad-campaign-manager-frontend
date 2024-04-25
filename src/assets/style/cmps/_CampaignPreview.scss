@@ -1,22 +1,31 @@
 .campaign-preview {
 
     .img-container {
-        max-width: 100px;
+        width: 80px;
+        height: 80px;
+        overflow: hidden;
+
+        .campaign-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
     }
 
+
     .details-btn {
-        background-color: #15b79f; // Example background color
-        @include color-variations(#15b79f); // Apply dynamic box-shadow
+        background-color: #15b79f;
+        @include color-variations(#51b8a8);
     }
 
     .edit-btn {
         background-color: #fb9c0c;
-        @include color-variations(#fb9c0c); 
+        @include color-variations(#d1aa6f);
     }
 
     .remove-btn {
-        background-color: #f04438; // Example background color
-        @include color-variations(#f04438); // Apply dynamic box-shadow
+        background-color: #f04438;
+        @include color-variations(#d4726f);
     }
 
     .action-btn {
@@ -48,7 +57,7 @@
 }
 
 
-    
+
 // @include for-mobile-layout {
 //     padding: 15px 0 0;
 //     list-style: none;

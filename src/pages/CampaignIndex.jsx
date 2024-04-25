@@ -50,17 +50,17 @@ export function CampaignIndex() {
 
     return (
         <>
-                {!isLoading &&
-                    <>
-                        <PlatformStatistics />
-                        <CampaignList
-                            campaigns={campaigns}
-                            onEditCampaign={onEditCampaign}
-                            onRemoveCampaign={onRemoveCampaign}
-                            onCampaignDetails={onCampaignDetails}
-                        />
-                    </>
-                }
+            {!isLoading &&
+                <section className='main-section'>
+                    <PlatformStatistics />
+                    <CampaignList
+                        campaigns={campaigns}
+                        onEditCampaign={onEditCampaign}
+                        onRemoveCampaign={onRemoveCampaign}
+                        onCampaignDetails={onCampaignDetails}
+                    />
+                </section>
+            }
         </>
     )
 }

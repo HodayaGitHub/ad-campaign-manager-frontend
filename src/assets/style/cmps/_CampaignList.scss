@@ -5,12 +5,11 @@
     border-radius: $table-border-raduis;
     border-style: hidden;
     box-shadow: 0 0 0 1px $border-color;
-    text-align: center;
 
     th {
         font-weight: 500;
-        text-align: center;
-        background-color: rgb(236 230 230 / 49%);
+        background-color: $clr1;
+        box-shadow: 0px 3px 0px rgba(0, 0, 0, 0.1);
 
         &:last-child {
             border-top-right-radius: $table-border-raduis;
@@ -22,9 +21,12 @@
     }
 
 
-    tr {
+    tr>td {
         border-bottom: $border;
+        color: $main-text-color;
+        text-align: center;
     }
+
 
     th,
     td {

@@ -15,7 +15,7 @@ export function App() {
     return (
         <Provider store={store}>
             <Router>
-                <section className="main-layout app">
+                <main className="main-layout app">
                     <AppHeader />
                         <Routes>
                             <Route element={<CampaignIndex />} path="/" />
@@ -24,7 +24,7 @@ export function App() {
                             <Route element={<CampaignDetails />} path="/campaign/details/:campaignId" />
                         </Routes>
                     <AppFooter />
-                </section>
+                </main>
             </Router>
         </Provider>
     )
