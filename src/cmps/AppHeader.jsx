@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 
 export function AppHeader() {
     return (
-        <header className="app-header full main-layout">
+        <header className="app-header full">
             <section className="header-container">
                 <NavLink to="/" className="nav-link">
                     <h1>Ad Campaign Manager</h1>

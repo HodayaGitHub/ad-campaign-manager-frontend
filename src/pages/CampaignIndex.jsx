@@ -49,8 +49,7 @@ export function CampaignIndex() {
     }
 
     return (
-        <div>
-            <main>
+        <>
                 {!isLoading &&
                     <>
                         <PlatformStatistics />
@@ -62,7 +61,6 @@ export function CampaignIndex() {
                         />
                     </>
                 }
-            </main>
-        </div>
+        </>
     )
 }

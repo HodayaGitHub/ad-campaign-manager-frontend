@@ -17,14 +17,12 @@ export function App() {
             <Router>
                 <section className="main-layout app">
                     <AppHeader />
-                    <main>
                         <Routes>
                             <Route element={<CampaignIndex />} path="/" />
                             <Route element={<CampaignEdit />} path="/campaign/:campaignId" />
                             <Route element={<AddCampaign />} path="/new-campaign" />
                             <Route element={<CampaignDetails />} path="/campaign/details/:campaignId" />
                         </Routes>
-                    </main>
                     <AppFooter />
                 </section>
             </Router>

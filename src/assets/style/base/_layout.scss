@@ -1,6 +1,6 @@
 .main-layout {
     display: grid;
-    grid-template-columns: 1.6rem 1fr 1.6rem;
+    grid-template-columns: minmax(120px, 1fr) minmax(auto, 1920px) minmax(120px, 1fr);
 
     >* {
         grid-column: 2;
@@ -25,4 +25,8 @@ footer {
     background-color: $clr1;
     color: $clr1bg;
     text-align: center;
+    z-index: 2;
+    background-color: rgba(255, 255, 255, 1);
+
+    box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.1);
 }
