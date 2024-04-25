@@ -2,7 +2,7 @@
 // import { campaignMockService as campaignService } from '../../services/campaign.mock.service'
 import { campaignService } from '../../services/campaign.service.js'
 import { store } from "../store.js"
-import { SET_IS_LOADING, SET_CAMPAIGNS, ADD_CAMPAIGN, UPDATE_CAMPAIGN, REMOVE_CAMPAIGN, CAMPAIGN_UNDO } from '../reducers/campaign.reducer.js'
+import { SET_IS_LOADING, SET_CAMPAIGNS, ADD_CAMPAIGN, UPDATE_CAMPAIGN, REMOVE_CAMPAIGN, CAMPAIGN_UNDO, SET_FILTER_BY } from '../reducers/campaign.reducer.js'
 
 
 
@@ -84,4 +84,9 @@ export async function saveCampaign(campaign) {
         throw err
     }
 }
+
+export function setFilterBy(filterBy) {
+    store.dispatch({ type: SET_FILTER_BY, filterBy })
+}
+
 

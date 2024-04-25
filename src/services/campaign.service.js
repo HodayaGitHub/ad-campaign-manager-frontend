@@ -7,6 +7,7 @@ export const campaignService = {
     save,
     remove,
     getEmptyCampaign,
+    getDefaultFilter,
 }
 
 const BASE_URL = 'campaign'
@@ -34,4 +35,10 @@ function getEmptyCampaign() {
         advertiserLandingPage: '',
         bannerImageURL: '',
     }
+}
+
+
+// Filtering 
+function getDefaultFilter() {
+    return { txt: '', platform: '', }
 }

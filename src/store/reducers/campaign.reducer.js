@@ -6,12 +6,13 @@ export const ADD_CAMPAIGN = 'ADD_CAMPAIGN'
 export const UPDATE_CAMPAIGN = 'UPDATE_CAMPAIGN'
 export const REMOVE_CAMPAIGN = 'REMOVE_CAMPAIGN'
 export const CAMPAIGN_UNDO = 'CAMPAIGN_UNDO'
-
+export const SET_FILTER_BY = 'SET_FILTER_BY'
 
 
 const initialState = {
     campaigns: [],
     isLoading: false,
+    filterBy: campaignService.getDefaultFilter(),
 }
 export function campaignReducer(state = initialState, action = {}) {
 
@@ -36,10 +37,15 @@ export function campaignReducer(state = initialState, action = {}) {
             lastCampaigns = [...state.campaigns]
             campaigns = state.campaigns.filter(campaign => campaign._id !== action.campaignId)
             return { ...state, campaigns, lastCampaigns }
-            
+
         case CAMPAIGN_UNDO:
             lastCampaigns = state.lastCampaigns || []
             return { ...state, campaigns: [...lastCampaigns] }
+
+        case SET_FILTER_BY:
+            return { ...state, filterBy: { ...state.filterBy, ...action.filterBy } }
+
+
         default:
             return state
     }
