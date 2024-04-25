@@ -1,10 +1,7 @@
-// const { useState, useEffect, useRef } = React
-
 import { useEffect, useRef, useState } from "react";
 import { utilService } from "../services/util.service.js";
-import { campaignService } from "../services/campaign.service.js";
 import { Formik, Form, Field } from 'formik';
-import { Button, Select, TextField } from '@mui/material';
+import { TextField } from '@mui/material';
 import { MultiSelect } from "./MultiSelect";
 
 
@@ -60,11 +57,7 @@ export function CampaignFilter({ filterBy, onSetFilter, campaigns }) {
                         </Form>
                     </Formik>
                 </div>
-                {/* <SortByForm></SortByForm> */}
-
             </div>
-
-
         </section>
     )
 }
