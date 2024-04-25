@@ -55,7 +55,7 @@ export function MultiSelect({ handleChange }) {
 
     return (
         <FormControl className="platform-filter" sx={{ flexGrow: 1, maxWidth: '500px' }}>
-            <InputLabel id="name-label">Labels</InputLabel>
+            <InputLabel id="name-platform">Advertising Platform</InputLabel>
             <Select
                 labelId="name-label"
                 id="multiple-platforms"
