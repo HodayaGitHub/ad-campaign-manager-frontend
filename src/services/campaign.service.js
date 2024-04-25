@@ -12,8 +12,8 @@ export const campaignService = {
 
 const BASE_URL = 'campaign'
 
-function query() {
-    return httpService.get(BASE_URL, {})
+function query(filterBy) {
+    return httpService.get(BASE_URL, {filterBy})
 }
 
 function getById(campaignId) {
