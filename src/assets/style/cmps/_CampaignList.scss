@@ -4,12 +4,15 @@
     border-collapse: collapse;
     border-radius: $table-border-raduis;
     border-style: hidden;
-    box-shadow: 0 0 0 1px $border-color;
+    // box-shadow: 0 0 0 1px $border-color;
+    background-color: #ffff;
 
     th {
         font-weight: 500;
         background-color: $clr1;
         box-shadow: 0px 3px 0px rgba(0, 0, 0, 0.1);
+        text-align: left;
+        width: fit-content;
 
         &:last-child {
             border-top-right-radius: $table-border-raduis;
@@ -24,13 +27,20 @@
     tr>td {
         border-bottom: $border;
         color: $main-text-color;
-        text-align: center;
+        text-align: left;
+
+        &:nth-child(3) {
+            text-align: center;
+        }
     }
 
 
-    th,
+    th {
+        padding: 3px 15px;
+    }
+
     td {
-        padding: 15px;
+        padding: 5px 6px;
     }
 
 

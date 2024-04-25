@@ -1,6 +1,7 @@
 .main-layout {
     display: grid;
     grid-template-columns: minmax(120px, 1fr) minmax(auto, 1920px) minmax(120px, 1fr);
+    background-color: rgb(199 187 187 / 38%);
 
     >* {
         grid-column: 2;
@@ -19,8 +20,19 @@
 
 
 .main-section {
-    margin-bottom: 150px;
+    margin: 90px 0;
+    display: flex;
+    gap: 55px;
 }
+
+.statistics-item {
+    background-color: #ffff;
+    width: max-content;
+    height: fit-content;
+    border-radius: $table-border-raduis;
+}
+
+
 
 footer {
     position: fixed;
