@@ -7,6 +7,7 @@ import { CampaignList } from '../cmps/CampaignList';
 import { showSuccessMsgRedux, showErrorMsgRedux } from '../store/actions/app.actions.js';
 import { useNavigate } from 'react-router-dom';
 import { CampaignSort } from '../cmps/CampaignSort';
+import { PlatformStatistics } from '../cmps/statistics/PlatformStatistics.jsx'
 
 
 export function CampaignIndex() {
@@ -14,7 +15,7 @@ export function CampaignIndex() {
     const isLoading = useSelector(storeState => storeState.campaignModule.isLoading);
 
     const navigate = useNavigate();
-    
+
     useEffect(() => {
         async function fetchData() {
             try {
@@ -51,12 +52,15 @@ export function CampaignIndex() {
         <div>
             <main>
                 {!isLoading &&
-                    <CampaignList
-                        campaigns={campaigns}
-                        onEditCampaign={onEditCampaign}
-                        onRemoveCampaign={onRemoveCampaign}
-                        onCampaignDetails={onCampaignDetails}
-                    />
+                    <>
+                        <PlatformStatistics />
+                        <CampaignList
+                            campaigns={campaigns}
+                            onEditCampaign={onEditCampaign}
+                            onRemoveCampaign={onRemoveCampaign}
+                            onCampaignDetails={onCampaignDetails}
+                        />
+                    </>
                 }
             </main>
         </div>

@@ -3,7 +3,16 @@ import { CampaignPreview } from "./CampaignPreview.jsx"
 export function CampaignList({ campaigns, onRemoveCampaign, onEditCampaign, addToCampaign, onCampaignDetails}) {
 
     return (
-        <ul className="campaign-list">
+        <table className="campaign-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Advertising Platform</th>
+                <th>Advertiser Landing Page</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
             {campaigns.map(campaign =>
                 <CampaignPreview
                     key={campaign._id}
@@ -11,9 +20,9 @@ export function CampaignList({ campaigns, onRemoveCampaign, onEditCampaign, addT
                     onRemoveCampaign={onRemoveCampaign}
                     onCampaignDetails={onCampaignDetails}
                     onEditCampaign={onEditCampaign}
-                    addToCampaign={addToCampaign}
                 />
             )}
-        </ul>
+        </tbody>
+    </table>
     )
 }
