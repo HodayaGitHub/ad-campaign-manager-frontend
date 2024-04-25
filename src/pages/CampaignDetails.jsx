@@ -76,7 +76,7 @@ export function CampaignDetails() {
                 cumque tempore, aperiam sed dolorum rem!
             </p>
 
-            <button> <Link className='back-btn' to={`/campaign`}>Back</Link></button>
+            <button> <Link className='back-btn' to={`/`}>Back</Link></button>
         </section>
     )
 }

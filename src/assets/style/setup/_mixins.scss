@@ -1,0 +1,112 @@
+// Breakpoints
+$mobile-breakpoint: 600px;
+$narrow-breakpoint: 960px;
+$normal-breakpoint: 1440px;
+$wide-breakpoint: 1920px;
+
+
+/* Breakpoint mixins */
+
+@mixin for-mobile-layout {
+    @media (max-width: calc(#{$mobile-breakpoint} - 1px)) {
+        @content;
+    }
+}
+
+@mixin for-narrow-layout {
+
+    // Starting from $mobile-breakpoint up to (but not including) $narrow-breakpoint
+    // 600px - 960px
+    @media (min-width: $mobile-breakpoint) and (max-width: calc(#{$narrow-breakpoint} - 1px)) {
+        @content;
+    }
+}
+
+@mixin for-mid-layout {
+
+    // Max $arrow-breakpoint
+    // Max 960px
+    @media (max-width: $narrow-breakpoint) {
+        @content;
+    }
+}
+
+@mixin for-normal-layout {
+
+    // Starting from $narrow-breakpoint up to (but not including) $normal-breakpoint
+    // 960px - 1440px 
+    @media (min-width: $narrow-breakpoint) and (max-width: calc(#{$normal-breakpoint} - 1px)) {
+        @content;
+    }
+}
+
+@mixin for-wide-layout {
+
+    // Starting from $normal-breakpoint up to (but not including) $wide-breakpoint
+    //  1440px -  1920px;
+    @media (min-width: $normal-breakpoint) and (max-width: calc(#{$wide-breakpoint} - 1px)) {
+        @content;
+    }
+}
+
+/* Media  Mixins */
+@mixin aspect-ratio($width, $height) {
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+        display: block;
+        content: "";
+        width: 100%;
+        padding-top: calc(($height / $width) * 100%);
+    }
+
+    >* {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+    >img {
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+// Mixin for removing hover efects on iphone screen
+@mixin hover-supported {
+    @media not all and (pointer: coarse) {
+        &:hover {
+            @content;
+        }
+    }
+}
+
+// Mixin to calculate lighter and darker shades of a color and define hover color
+@mixin color-variations($color) {
+    $lighter: lighten($color, 10%);
+    $darker: darken($color, 10%);
+    box-shadow: $lighter 0 -5px 28px -23px, // Reduced spread and blur radius
+        $darker 0 1px 2px,
+        $darker 0 2px 4px,
+        $darker 0 4px 8px;
+        // $darker 0 -2px 6px;
+        // $darker 0 -2px 24px;
+
+
+        // #1ae5c7 0 -5px 28px -23px inset, #108977 0 1px 2px, #108977 0 2px 4px, #108977 0 4px 8px, #108977 0 -2px 6px, #108977 0 -2px 24px
+        
+        // Define hover color based on button's background color
+    &:hover {
+        background-color: $color; // Use the same color as the button's background
+        box-shadow: $lighter 0 -25px 18px -14px inset,
+            $lighter 0 1px 2px,
+            $lighter 0 2px 4px,
+            $lighter 0 4px 8px;
+            // $lighter 0 8px 16px,
+            // $lighter 0 16px 32px;
+        transform: scale(1.05) rotate(-1deg);
+    }
+}

@@ -30,6 +30,7 @@ export function CampaignList({ campaigns, onRemoveCampaign, onEditCampaign, onCa
 export function CampaignPreview({ campaign, onRemoveCampaign, onEditCampaign, onCampaignDetails }) {
     return (
         <tr className="campaign-preview" key={campaign._id}>
+            <td><CampaignImage campaign={campaign} /></td>
             <td>
                 <Link to={`/campaign/details/${campaign._id}`}>
                     {campaign.name}
@@ -38,9 +39,9 @@ export function CampaignPreview({ campaign, onRemoveCampaign, onEditCampaign, on
             <td>{campaign.advertisingPlatform}</td>
             <td>{campaign.advertiserLandingPage}</td>
             <td>
-                <button onClick={() => { onCampaignDetails(campaign._id) }}>Details</button>
-                <button onClick={() => { onRemoveCampaign(campaign._id) }}>Remove</button>
-                <button onClick={() => { onEditCampaign(campaign) }}>Edit</button>
+                <button className="action-btn details-btn" onClick={() => { onCampaignDetails(campaign._id) }}>Details</button>
+                <button className="action-btn edit-btn" onClick={() => { onEditCampaign(campaign) }}>Edit</button>
+                <button className="action-btn remove-btn" onClick={() => { onRemoveCampaign(campaign._id) }}>Remove</button>
             </td>
         </tr>
     )
