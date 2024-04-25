@@ -4,7 +4,7 @@ export function AppFooter() {
     return (
         <footer>
             <h5>
-            This dashboard developed by Hodaya Ovadia &copy; {currentYear}
+                Developed by Hodaya Ovadia &copy; {currentYear}
             </h5>
         </footer>
     );

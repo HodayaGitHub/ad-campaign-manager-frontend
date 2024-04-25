@@ -6,7 +6,7 @@ html {}
 
 body {
   margin: 0;
-  background: #ffff;
+  // background-color: pink;
   color: $main-text-color;
   // font-family: 'Edu VIC WA NT Beginner', cursive;
   font-family: Roboto, sans-serif;
@@ -33,7 +33,6 @@ a {
   cursor: pointer;
 }
 
-// Don't stretch my Media
 img,
 embed,
 video,
@@ -41,7 +40,6 @@ object {
   max-width: 100%;
 }
 
-// Simple and useful CSS Debugging Technique
 .debug * {
   outline: 1px solid gold;
 }
