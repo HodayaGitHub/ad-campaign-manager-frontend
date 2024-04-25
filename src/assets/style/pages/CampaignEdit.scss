@@ -7,19 +7,22 @@
         flex-direction: column;
         font-size: 1.5rem;
         gap: 30px;
-        max-width: 450px;
+        max-width: 100%;
         align-self: center;
         margin-top: 40px;
+
+        .formik-field-upload {
+            display: flex;
+            gap: 40px;
+            justify-content: space-between;
+        }
 
         input {
             max-width: 200px;
             margin-bottom: 15px;
         }
 
-        .formik-field-edit {
-            display: flex;
-            justify-content: space-between;
-        }
+      
 
         .formik-field-select {
             background-color: inherit;

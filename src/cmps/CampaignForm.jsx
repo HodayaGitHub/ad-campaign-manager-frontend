@@ -140,7 +140,7 @@ export function CampaignForm({ formMode }) {
                         value={campaignToEdit.advertiserLandingPage || ''}
                     />
 
-                    <div className="formik-field-edit">
+                    <div className="formik-field-upload">
                         <label htmlFor="bannerImageURL">Upload Banner Image</label>
                         <input
                             id="bannerImageURL"
