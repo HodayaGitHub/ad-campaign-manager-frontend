@@ -1,7 +1,6 @@
 import { campaignService } from "../../services/campaign.service.js"
 
 export const SET_CAMPAIGNS = 'SET_CAMPAIGNS'
-export const SET_IS_LOADING = 'SET_IS_LOADING'
 export const ADD_CAMPAIGN = 'ADD_CAMPAIGN'
 export const UPDATE_CAMPAIGN = 'UPDATE_CAMPAIGN'
 export const REMOVE_CAMPAIGN = 'REMOVE_CAMPAIGN'
@@ -11,7 +10,6 @@ export const SET_FILTER_BY = 'SET_FILTER_BY'
 
 const initialState = {
     campaigns: [],
-    isLoading: false,
     filterBy: campaignService.getDefaultFilter(),
 }
 export function campaignReducer(state = initialState, action = {}) {
@@ -22,9 +20,6 @@ export function campaignReducer(state = initialState, action = {}) {
     switch (action.type) {
         case SET_CAMPAIGNS:
             return { ...state, campaigns: action.campaigns }
-
-        case SET_IS_LOADING:
-            return { ...state, isLoading: action.isLoading }
 
         case ADD_CAMPAIGN:
             return { ...state, campaigns: [action.campaign, ...state.campaigns] }
