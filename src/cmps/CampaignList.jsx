@@ -6,7 +6,7 @@ export function CampaignList({ campaigns, onRemoveCampaign, onEditCampaign, addT
         <table className="campaign-table">
             <thead>
                 <tr>
-                    <th>Banner image </th>
+                    <th>Banner Image </th>
                     <th>Name</th>
                     <th>Advertising Platform</th>
                     <th>Advertiser Landing Page</th>
