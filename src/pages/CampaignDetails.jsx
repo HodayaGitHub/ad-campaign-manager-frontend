@@ -55,16 +55,14 @@ export function CampaignDetails() {
             <h4>advertising Platform: {campaign.advertisingPlatform}</h4>
             <h4>advertiser Landing Page: {campaign.advertiserLandingPage}</h4>
 
-            <CampaignImage campaign={campaign}/>
+            <CampaignImage campaign={campaign} />
 
             <ul>
                 {campaign.msgs &&
                     campaign.msgs.map((msg) => (
                         <li key={msg.id}>
                             By: {msg.by.fullname} - {msg.txt}
-                            <button
-                                type="button"
-                                onClick={() => onRemoveMsg(msg.id)}>
+                            <button type="button" onClick={() => onRemoveMsg(msg.id)}>
                                 X
                             </button>
                         </li>

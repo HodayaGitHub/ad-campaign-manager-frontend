@@ -3,12 +3,10 @@ import { PieChart } from '@mui/x-charts/PieChart';
 
 
 const data1 = [
-    { label: 'Group A', value: 2400 },
-    { label: 'Group B', value: 4567 },
-    { label: 'Group C', value: 1398 },
-    { label: 'Group D', value: 9800 },
-    { label: 'Group E', value: 3908 },
-    { label: 'Group F', value: 4800 },
+    { label: 'Google', value: 2400, color: 'rgb(82, 176, 230)' },
+    { label: 'Taboola', value: 4567, color: 'rgb(10 80 121 / 86%)' },
+    { label: 'TikTok', value: 1398 ,color: 'rgb(106 158 189 / 73%)'},
+
 ];
 
 export function PieStatistics() {
@@ -26,9 +24,6 @@ export function PieStatistics() {
                 ]}
                 height={250}
                 width={300}
-                // slotProps={{
-                //     legend: { hidden: true },
-                // }}
             />
         </div>
     );
