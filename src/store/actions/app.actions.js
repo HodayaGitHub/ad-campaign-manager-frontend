@@ -13,3 +13,7 @@ export function showErrorMsgRedux(txt) {
 export function setMsg(msg) {
     store.dispatch({ type: SET_MSG, msg })
 }
+
+export function clearMsg() {
+    store.dispatch({ type: SET_MSG,  msg: null })
+}

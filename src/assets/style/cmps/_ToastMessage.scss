@@ -1,0 +1,33 @@
+.toast-container {
+  position: fixed;
+  right: 20px;
+  z-index: 4;
+  bottom: 0;
+
+  .toast {
+      padding: 10px 20px;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      max-width: 300px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      &.success {
+          background-color: #4caf50;
+          color: #fff;
+      }
+
+      &.error {
+          background-color: #f44336;
+          color: #fff;
+      }
+
+      .toast-close {
+          cursor: pointer;
+          margin-left: 10px;
+          color: inherit;
+      }
+  }
+}

@@ -1,6 +1,6 @@
 
-import { useNavigate, useParams } from 'react-router-dom';
-import { useEffect, useRef, useState } from 'react';
+import { useNavigate, useParams, Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import { campaignService } from '../services/campaign.service';
 import { saveCampaign } from '../../src/store/actions/campaign.actions';
 import { showErrorMsgRedux, showSuccessMsgRedux } from '../store/actions/app.actions';
@@ -84,10 +84,10 @@ export function CampaignForm({ formMode }) {
     async function onSaveCampaign() {
         try {
             await saveCampaign(campaignToEdit);
-            showSuccessMsgRedux('Campaign saved successfully');
+            showSuccessMsgRedux('Campaign edited successfully');
             navigate('/');
         } catch (err) {
-            showErrorMsgRedux(`Error while trying to save campaign, ${err}`);
+            showErrorMsgRedux(`Error while trying to save campaign, try again`);
         }
     }
 
@@ -100,85 +100,93 @@ export function CampaignForm({ formMode }) {
     }
 
     return (
-        <section className="campaign-edit">
-            {mode === "add" ? (
-                <h1>Add New Campaign</h1>
-            ) : (
-                <h1>Edit Campaign</h1>
-            )}
+        <>
+            <section className="campaign-edit">
+                {mode === "add" ? (
+                    <h1>Add New Campaign</h1>
+                ) : (
+                    <h1>Edit Campaign</h1>
+                )}
 
 
-            <Formik
-                initialValues={{
-                    name: '',
-                    advertisingPlatform: '',
-                    advertiserLandingPage: '',
-                    bannerImageURL: '',
-                }}
-                onSubmit={onSaveCampaign}
-            >
+                <Formik
+                    initialValues={{
+                        name: '',
+                        advertisingPlatform: '',
+                        advertiserLandingPage: '',
+                        bannerImageURL: '',
+                    }}
+                    onSubmit={onSaveCampaign}
+                >
 
 
-                <Form className="formik">
-                    <Field className="formik-field-edit"
-                        id="name"
-                        as={CustomInput}
-                        name="name"
-                        label="Campaign's Name"
-                        type="text"
-                        onChange={handleChange}
-                        value={campaignToEdit.name || ''}
-                    />
-
-                    <Field className="formik-field-edit"
-                        id="advertiserLandingPage"
-                        as={CustomInput}
-                        name="advertiserLandingPage"
-                        label="Advertiser Landing Page"
-                        type="text"
-                        onChange={handleChange}
-                        value={campaignToEdit.advertiserLandingPage || ''}
-                    />
-
-                    <div className="formik-field-upload">
-                        <label htmlFor="bannerImageURL">Upload Banner Image</label>
-                        <input
-                            id="bannerImageURL"
-                            name="bannerImageURL"
-                            type="file"
-                            style={{ display: 'none' }}
-                            onChange={(event) => handleChange(event)}
+                    <Form className="formik">
+                        <Field className="formik-field-edit"
+                            id="name"
+                            as={CustomInput}
+                            name="name"
+                            label="Campaign's Name"
+                            type="text"
+                            onChange={handleChange}
+                            value={campaignToEdit.name || ''}
+                            required
                         />
-                        <Button
-                            variant="outlined"
-                            component="label"
-                            htmlFor="bannerImageURL"
+
+                        <Field className="formik-field-edit"
+                            id="advertiserLandingPage"
+                            as={CustomInput}
+                            name="advertiserLandingPage"
+                            label="Advertiser Landing Page"
+                            type="text"
+                            onChange={handleChange}
+                            value={campaignToEdit.advertiserLandingPage || ''}
+                            required
+
+                        />
+
+                        <div className="formik-field-upload">
+                            <label htmlFor="bannerImageURL">Upload Banner Image</label>
+                            <input
+                                id="bannerImageURL"
+                                name="bannerImageURL"
+                                type="file"
+                                style={{ display: 'none' }}
+                                onChange={(event) => handleChange(event)}
+                            />
+                            <Button
+                                variant="outlined"
+                                component="label"
+                                htmlFor="bannerImageURL"
+                            >
+                                {fileName ? fileName : "Choose File"}
+                            </Button>
+                        </div>
+
+                        <Field
+                            className="formik-field-select"
+                            id="advertisingPlatform"
+                            as="select"
+                            name="advertisingPlatform"
+                            label="Select Advertising Platform"
+                            onChange={handlePlatformChange}
+                            value={selectedPlatform}
+
                         >
-                            {fileName ? fileName : "Choose File"}
-                        </Button>
-                    </div>
+                            {Object.entries(AdvertisingPlatform).map(([key, value]) => (
+                                <option key={key} value={value}>
+                                    {value}
+                                </option>
+                            ))}
+                        </Field>
 
-                    <Field
-                        className="formik-field-select"
-                        id="advertisingPlatform"
-                        as="select"
-                        name="advertisingPlatform"
-                        label="Select Advertising Platform"
-                        onChange={handlePlatformChange}
-                        value={selectedPlatform}
+                        <Button type="submit" variant="contained" disabled={isUploading}>save</Button>
+                    </Form>
+                </Formik>
 
-                    >
-                        {Object.entries(AdvertisingPlatform).map(([key, value]) => (
-                            <option key={key} value={value}>
-                                {value}
-                            </option>
-                        ))}
-                    </Field>
+            </section>
 
-                    <Button type="submit" variant="contained" disabled={isUploading}>save</Button>
-                </Form>
-            </Formik>
-        </section>
+            <Link to={`/`}> <button className='back-btn-edit-new'>Back</button></Link>
+        </>
     )
 }
 

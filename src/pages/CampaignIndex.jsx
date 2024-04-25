@@ -7,13 +7,12 @@ import { useNavigate } from 'react-router-dom';
 import { PlatformStatistics } from '../cmps/statistics/PlatformStatistics';
 import { PieStatistics } from '../cmps/statistics/PieStatistics';
 import { CampaignFilter } from '../cmps/CampaignFilter';
-
+import { ToastMessage } from '../cmps/ToastMessage';
 
 export function CampaignIndex() {
     const campaigns = useSelector(storeState => storeState.campaignModule.campaigns);
     const isLoading = useSelector(storeState => storeState.campaignModule.isLoading);
     const filterBy = useSelector(storeState => storeState.campaignModule.filterBy);
-
 
     const navigate = useNavigate();
 
@@ -29,10 +28,10 @@ export function CampaignIndex() {
         }
     }
 
-    async function onRemoveCampaign(campaignId) {
+    async function onRemoveCampaign(campaign) {
         try {
-            await removeCampaign(campaignId);
-            showSuccessMsgRedux(`Removed item with ${campaignId} id successfully`);
+            await removeCampaign(campaign._id);
+            showSuccessMsgRedux(`Removed "${campaign.name}" campaign successfully`);
         } catch (error) {
             console.error('Cannot remove campaign', error);
             showErrorMsgRedux('Cannot remove campaign');
@@ -74,6 +73,7 @@ export function CampaignIndex() {
                             onCampaignDetails={onCampaignDetails}
                         />
                     </section>
+                    <ToastMessage />
                 </>
 
             }

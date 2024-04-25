@@ -41,7 +41,7 @@ export function CampaignPreview({ campaign, onRemoveCampaign, onEditCampaign, on
             <td>
                 <button className="action-btn details-btn" onClick={() => { onCampaignDetails(campaign._id) }}>Details</button>
                 <button className="action-btn edit-btn" onClick={() => { onEditCampaign(campaign) }}>Edit</button>
-                <button className="action-btn remove-btn" onClick={() => { onRemoveCampaign(campaign._id) }}>Remove</button>
+                <button className="action-btn remove-btn" onClick={() => { onRemoveCampaign(campaign) }}>Remove</button>
             </td>
         </tr>
     )
