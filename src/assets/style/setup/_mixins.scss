@@ -26,7 +26,7 @@ $wide-breakpoint: 1920px;
 
     // Max $arrow-breakpoint
     // Max 960px
-    @media (max-width: $narrow-breakpoint) {
+    @media (max-width: $normal-breakpoint) {
         @content;
     }
 }
