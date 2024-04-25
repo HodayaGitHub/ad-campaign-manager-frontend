@@ -159,7 +159,7 @@ export function CampaignForm({ formMode }) {
                     </div>
 
                     <Field
-                        className="formik-field-edit"
+                        className="formik-field-select"
                         id="advertisingPlatform"
                         as="select"
                         name="advertisingPlatform"

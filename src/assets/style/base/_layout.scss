@@ -1,8 +1,7 @@
 .main-layout {
     display: grid;
     grid-template-columns: minmax(120px, 1fr) minmax(auto, 1920px) minmax(120px, 1fr);
-    background-color: rgb(199 187 187 / 38%);
-
+    
     >* {
         grid-column: 2;
     }
