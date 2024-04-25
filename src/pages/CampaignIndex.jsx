@@ -7,7 +7,8 @@ import { CampaignList } from '../cmps/CampaignList';
 import { showSuccessMsgRedux, showErrorMsgRedux } from '../store/actions/app.actions.js';
 import { useNavigate } from 'react-router-dom';
 import { CampaignSort } from '../cmps/CampaignSort';
-import { PlatformStatistics } from '../cmps/statistics/PlatformStatistics.jsx'
+import { PlatformStatistics } from '../cmps/statistics/PlatformStatistics';
+import { PieStatistics } from '../cmps/statistics/PieStatistics';
 
 
 export function CampaignIndex() {
@@ -52,7 +53,11 @@ export function CampaignIndex() {
         <>
             {!isLoading &&
                 <section className='main-section'>
-                    <PlatformStatistics />
+                    <div className='data-container'>
+                        <PlatformStatistics />
+                        <PieStatistics />
+                    </div>
+
                     <CampaignList
                         campaigns={campaigns}
                         onEditCampaign={onEditCampaign}
