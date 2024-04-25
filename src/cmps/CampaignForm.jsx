@@ -101,7 +101,12 @@ export function CampaignForm({ formMode }) {
 
     return (
         <section className="campaign-edit">
-            <h1>Edit Campaign</h1>
+            {mode === "add" ? (
+                <h1>Add New Campaign</h1>
+            ) : (
+                <h1>Edit Campaign</h1>
+            )}
+
 
             <Formik
                 initialValues={{
