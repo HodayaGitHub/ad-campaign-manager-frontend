@@ -1,14 +1,15 @@
-.campaign-filter {
+.filter-container {
     background-color: none;
-    padding-top: 50px;
+    padding: 15px 0;
 
-    .filter-container {
-
-        .formik {
-            display: flex;
-            gap: 50px;
-
-        }
+    .campaign-filters {
+        width: fit-content;
+        display: flex;
+        flex-direction: row;
+        gap: 50px;
+        margin-top: 15px;
+        align-items: center;
+        justify-content: center;
     }
 
 }
