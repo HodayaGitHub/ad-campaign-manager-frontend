@@ -13,52 +13,49 @@ function CustomInput(props) {
 export function CampaignFilter({ filterBy, onSetFilter }) {
     const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
 
-    onSetFilter = useRef(utilService.debounce(onSetFilter))
+    onSetFilter = useRef(utilService.debounce(onSetFilter));
 
     useEffect(() => {
-        onSetFilter.current(filterByToEdit)
+        onSetFilter.current(filterByToEdit);
     }, [filterByToEdit])
 
 
     function handleChange({ target }) {
-        let { value, name: field, type } = target
-        value = (type === 'number') ? +value : value
-        setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
-        onSetFilter.current(filterByToEdit)
+        let { value, name: field, type } = target;
+        value = (type === 'number') ? +value : value;
+        setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }));
+        onSetFilter.current(filterByToEdit);
     }
 
 
     return (
-        <section className="campaign-filter full main-layout">
-            <h2>Campaigns Filter</h2>
+        <section className="filter-container full main-layout">
 
-            <div className="filter-container">
+            <h2>Campaigns Filters</h2>
 
-                <div>
-                    <Formik
-                        initialValues={{
-                            txt: '',
-                            advertisingPlatform: '',
-                        }}
-                    >
-                        <Form className="formik">
-                            <Field className="formik-field-filter"
-                                id="txt"
-                                as={CustomInput}
-                                name="txt"
-                                label="Campaign Name"
-                                type="text"
-                                onChange={handleChange}
-                                value={filterByToEdit.txt}
-                            />
+            <Formik
+                initialValues={{
+                    txt: '',
+                    advertisingPlatform: '',
+                }}
+            >
+                <Form className="formik campaign-filters">
 
-                            <MultiSelect handleChange={handleChange} />
+                    <Field className="formik-field-filter"
+                        id="txt"
+                        as={CustomInput}
+                        name="txt"
+                        label="Campaign Name"
+                        type="text"
+                        onChange={handleChange}
+                        value={filterByToEdit.txt}
+                    />
 
-                        </Form>
-                    </Formik>
-                </div>
-            </div>
-        </section>
+                    <MultiSelect handleChange={handleChange} />
+
+                </Form>
+            </Formik>
+        </section >
     )
 }
 

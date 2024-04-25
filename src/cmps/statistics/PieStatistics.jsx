@@ -13,7 +13,6 @@ export function PieStatistics() {
 
     return (
         <div className='statistics-item' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-
             <PieChart
                 series={[
                     {

@@ -36,7 +36,6 @@ export function MultiSelect({ handleChange }) {
         const value = [...event.target.value]
 
         setPlatformName(
-            // On autofill we get a stringified value.
             typeof value === 'string' ? value.split(',') : value,
         )
 

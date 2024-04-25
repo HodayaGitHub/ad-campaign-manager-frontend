@@ -4,7 +4,6 @@ import { BarChart } from '@mui/x-charts/BarChart';
 export function PlatformStatistics() {
 
     return (
-
         <div className='statistics-item'>
             <BarChart
                 xAxis={[{
@@ -20,6 +19,5 @@ export function PlatformStatistics() {
                 height={300}
             />
         </div>
-
     );
 }

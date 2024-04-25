@@ -18,8 +18,8 @@ export function CampaignDetails() {
             const campaign = await campaignService.getById(campaignId)
             setCampaign(campaign)
         } catch (err) {
-            showErrorMsgRedux('Cant load campaign')
-            navigate('/')
+            showErrorMsgRedux('Cant load campaign');
+            navigate('/');
         }
     }
 

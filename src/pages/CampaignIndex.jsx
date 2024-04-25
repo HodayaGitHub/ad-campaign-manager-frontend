@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { PlatformStatistics } from '../cmps/statistics/PlatformStatistics';
 import { PieStatistics } from '../cmps/statistics/PieStatistics';
 import { CampaignFilter } from '../cmps/CampaignFilter';
+import { Stacking } from '../cmps/statistics/Stacking';
 import { ToastMessage } from '../cmps/ToastMessage';
 
 export function CampaignIndex() {
@@ -64,6 +65,7 @@ export function CampaignIndex() {
                         <div className='data-container'>
                             <PlatformStatistics />
                             <PieStatistics />
+                            <Stacking />
                         </div>
 
                         <CampaignList
