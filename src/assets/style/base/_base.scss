@@ -6,11 +6,10 @@ html {}
 
 body {
   margin: 0;
-  // color: var(--gray3);
-  // color: white;
   background: #ffff;
-  color: rgb(153, 166, 149);
-  font-family: 'Edu VIC WA NT Beginner', cursive;
+  color: $main-text-color;
+  // font-family: 'Edu VIC WA NT Beginner', cursive;
+  font-family: Roboto, sans-serif;
 }
 
 h1,
@@ -20,7 +19,8 @@ h4,
 h5,
 h6 {
   margin: .5em 0 .5em;
-  font-family: 'Edu VIC WA NT Beginner', cursive;
+  font-family: Roboto, sans-serif;
+  // font-family: 'Edu VIC WA NT Beginner', cursive;
 }
 
 p {

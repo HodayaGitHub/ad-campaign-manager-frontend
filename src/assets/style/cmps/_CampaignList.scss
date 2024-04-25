@@ -1,17 +1,37 @@
 .campaign-table {
+    max-width: max-content;
+    border: $border;
     border-collapse: collapse;
-    border: 1px solid black;
-    width: 100%;
-    text-align: left;
+    border-radius: $table-border-raduis;
+    border-style: hidden;
+    box-shadow: 0 0 0 1px $border-color;
+    text-align: center;
 
+    th {
+        font-weight: 500;
+        text-align: center;
+        background-color: rgb(236 230 230 / 49%);
+
+        &:last-child {
+            border-top-right-radius: $table-border-raduis;
+        }
+
+        &:first-child {
+            border-top-left-radius: $table-border-raduis;
+        }
+    }
+
+
+    tr {
+        border-bottom: $border;
+    }
 
     th,
     td {
-        border: 1px solid black;
-        /* Add borders to table cells */
-        padding: 8px;
-        /* Add padding for better readability */
+        padding: 15px;
     }
+
+
 }
 
 .campaign-list {
